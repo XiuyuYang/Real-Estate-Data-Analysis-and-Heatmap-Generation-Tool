@@ -77,7 +77,7 @@ class Homes:
             home_data_dict = {}
             try:
                 home_detail = home_data['home_detail']
-            except KeyError as e:
+            except KeyError:
                 continue
             property_details = home_data['home_detail']['property_details']
 
@@ -217,7 +217,7 @@ class HomeHeatMapGenerator:
         for i in range(len(data)):
             lat, lon, value = data[i]
             color = colormap(value)  # Get color based on the weight value
-            folium.Circle(location=[lat, lon], radius=5, color=color, fill=True, fill_color=color,
+            folium.Circle(location=(lat, lon), radius=5, color=color, fill=True, fill_color=color,
                           tooltip=value_str[i]).add_to(self.heat_map)
 
     # Displays the generated heatmap on the map
